@@ -5,3 +5,13 @@ Programmet ska kunna gå igenom filerna, hitta composer.json, dockerfile, andra 
 Gå igenom alla filerna kolla upp versionerna och hämta in nyare, ge användaren förslag till om den 
 vill uppdatera till senaste eller nån utav 5 senaste versionerna.
 WP & PLUGIN uppdateringar.
+
+Språk:
+C++ / Odin-Lang
+
+GUI lib:
+https://nappgui.com/en/home/web/home.html
+
+Apier:
+hub.docker.com
+wppackagist.com
