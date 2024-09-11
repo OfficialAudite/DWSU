@@ -1,0 +1,4 @@
+Programmet ska kunna gå igenom filerna, hitta composer.json, dockerfile, andra filer som innehåller versioner (exlusive package.json). 
+Gå igenom alla filerna kolla upp versionerna och hämta in nyare, ge användaren förslag till om den 
+vill uppdatera till senaste eller nån utav 5 senaste versionerna.
+WP & PLUGIN uppdateringar.
