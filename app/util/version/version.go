@@ -20,6 +20,10 @@ func IsLatestVersion() bool {
 	return CurrentVersion >= LatestVersion
 }
 
+func GetCurrentVersion() string {
+	return CurrentVersion
+}
+
 func GetLatestVersion() string {
 	res, err := http.Get(GH_API_URL + "/releases/latest")
 	if err != nil {
