@@ -3,6 +3,7 @@ package parsers
 import (
 	"encoding/json"
 	"os"
+	"strings"
 )
 
 type Composer struct {
@@ -20,5 +21,16 @@ func ParseComposer(path string) (*Composer, error) {
 	if err := json.NewDecoder(file).Decode(&composer); err != nil {
 		return nil, err
 	}
+
+	for pluginName, version := range composer.Require {
+		if !strings.HasPrefix(pluginName, "wpackagist-plugin/") {
+			delete(composer.Require, pluginName)
+			continue
+		}
+		
+		composer.Require[strings.TrimPrefix(pluginName, "wpackagist-plugin/")] = version
+		delete(composer.Require, pluginName)
+	}
+
 	return &composer, nil
 }
