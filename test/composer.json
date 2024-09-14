@@ -1,0 +1,46 @@
+{
+    "name": "officialaudite/composer-test",
+    "description": "Composer test",
+    "authors": [
+      {
+        "name": "officialaudite",
+        "email": "----"
+      }
+    ],
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://wpackagist.org",
+        "only": [
+          "wpackagist-plugin/*",
+          "wpackagist-theme/*"
+        ]
+      }
+    ],
+    "extra": {
+      "installer-paths": {
+        "plugins/{$name}/": [
+          "type:wordpress-plugin"
+        ],
+        "mu-plugins/{$name}/": [
+          "type:wordpress-muplugin"
+        ],
+        "themes/{$name}/": [
+          "type:wordpress-theme"
+        ]
+      }
+    },
+    "config": {
+      "platform": {
+        "php": "8.2"
+      }
+    },
+    "require": {
+      "wpackagist-plugin/classic-widgets": "0.3",
+      "wpackagist-plugin/better-search-replace": "1.4.7",
+      "wpackagist-plugin/cookies-and-content-security-policy":"2.25",
+      "wpackagist-plugin/wordpress-seo": "23.2",
+      "wpackagist-plugin/duplicate-post": "4.5",
+      "wpackagist-plugin/redirection":"5.4.2"
+    }
+  }
