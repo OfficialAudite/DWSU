@@ -1,0 +1,47 @@
+package main
+
+import (
+	"github.com/OfficialAudite/DWSU/app/controllers"
+	"github.com/OfficialAudite/DWSU/app/parsers"
+)
+
+func main() {
+	location := "./test"
+
+	composer, err := parsers.ParseComposer(location + "/composer.json")
+	if err != nil {
+		panic(err)
+	}
+
+	phpVersion, wordpressVersion, wpPhpVersion, err := parsers.ParseDockerfile(location + "/Dockerfile")
+
+	var phpVersions, wordpressVersions, wpPhpVersions []string
+	phpVersions = append(wpPhpVersions, phpVersion)
+	wordpressVersions = append(wpPhpVersions, wordpressVersion)
+	wpPhpVersions = append(wpPhpVersions, wpPhpVersion)
+
+	app := controllers.NewWindow()
+
+	app.AddTextView("Dockerfile Versions", "", 2, 2, true, false)
+
+	app.AddDropDown("PHP Version", phpVersions, 0, func(text string, index int) {
+		// Handle dropdown selection here if needed
+	})
+	app.AddDropDown("Wordpress Version", wordpressVersions, 0, func(text string, index int) {
+		// Handle dropdown selection here if needed
+	})
+	app.AddDropDown("WP PHP Version", wpPhpVersions, 0, func(text string, index int) {
+		// Handle dropdown selection here if needed
+	})
+
+	app.AddTextView("", "", 2, 2, true, false)
+	app.AddTextView("Composer Versions", "", 2, 2, true, false)
+
+	for packageName, version := range composer.Require {
+		versions := []string{version}
+		app.AddDropDown(packageName + "     ", versions, 0, func(text string, index int) {
+			// Handle dropdown selection here if needed
+		})
+	}
+	app.Run()
+}
