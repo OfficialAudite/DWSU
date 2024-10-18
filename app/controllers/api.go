@@ -9,10 +9,11 @@ import (
 )
 
 type WordPressPlugin struct {
-	Name          string   `json:"name"`
-	Slug          string   `json:"slug"`
-	LatestVersion string   `json:"version"`
-	Versions      []string `json:"versions"`
+	Name          string            `json:"name"`
+	Slug          string            `json:"slug"`
+	LatestVersion string            `json:"version"`
+	Versions      map[string]string `json:"versions"`
+  VersionList   []string           `json:"-"`
 }
 
 type DockerImageTag struct {
@@ -52,6 +53,12 @@ func GetWordpressPluginVersions(pluginSlug string) (WordPressPlugin, error) {
 	err = json.Unmarshal(body, &WordPressPlugin)
 	if err != nil {
 		return WordPressPlugin, err
+	}
+
+	// Generate a list of version numbers from the map
+	WordPressPlugin.VersionList = make([]string, 0, len(WordPressPlugin.Versions))
+	for version := range WordPressPlugin.Versions {
+		WordPressPlugin.VersionList = append(WordPressPlugin.VersionList, version)
 	}
 
 	return WordPressPlugin, nil
